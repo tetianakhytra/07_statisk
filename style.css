@@ -1,0 +1,45 @@
+*{margin: 0;
+padding: 0;
+box-sizing: border-box;}
+
+img{
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.card{
+    padding: 5px;
+    background-color: rgb(162, 168, 190);
+    grid-row: span 4;
+    display: grid;
+    grid-template-columns: subgrid;
+    position: relative;
+}
+.discount{
+    position: absolute;
+    top: 7%;
+    right: 2%;
+    width: 30%;
+    padding: 5px;
+    background-color: rgb(38, 123, 42);
+}
+.soldout{
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    width: 40%;
+    padding: 12px;
+    background-color: rgb(46, 41, 101);
+    color: aliceblue;
+}
+.soldout_img {
+    filter: grayscale(100%);
+}
+@media(min-width: 600px){
+    .container{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: auto auto;
+        gap: 20px;
+    }
+}
