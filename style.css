@@ -1,12 +1,62 @@
-*{margin: 0;
+*{
+margin: 0;
 padding: 0;
 box-sizing: border-box;}
 
+body{
+    font-family: "Montserrat";
+    background: #dedce6;
+}
+header{
+    width: 90%;
+   margin-left: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0px;
+   
+}
+header h1{
+    text-align: center;
+    font-size: 38px;
+    color: rgb(6, 126, 116);
+    padding: 0;
+    margin: 0;
+}
+main{
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: 40px;
+}
+/*********nav****/
+nav ul {
+    list-style: none;
+    display: flex;
+
+    gap: 15px;
+    padding: 0;
+    margin: 0;
+}
+nav ul li{
+    display: inline;
+}
+nav ul li a{
+    text-decoration: 0;
+    color: black;
+    font-size: 16px;
+}
+main{
+    width: 90%;
+    max-width: 1200PX;
+    text-align: left;
+    margin-top: 30px;
+}
 img{
     width: 100%;
     height: auto;
     display: block;
 }
+/********produkt list*****/
 .card{
     padding: 5px;
     background-color: rgb(162, 168, 190);
@@ -14,32 +64,280 @@ img{
     display: grid;
     grid-template-columns: subgrid;
     position: relative;
+    
 }
 .discount{
     position: absolute;
-    top: 7%;
+    text-align: center;
+    font-weight: bold;
+    top: 12%;
     right: 2%;
     width: 30%;
     padding: 5px;
-    background-color: rgb(38, 123, 42);
+    background-color: rgb(170, 23, 47);
+    color: aliceblue;
 }
 .soldout{
     position: absolute;
-    top: 30%;
-    left: 30%;
-    width: 40%;
+    top: 40%;
+    left: 28%;
+    width: 50%;
     padding: 12px;
-    background-color: rgb(46, 41, 101);
+    background-color:rgb(24, 6, 138);
     color: aliceblue;
+    text-align: center;
 }
 .soldout_img {
     filter: grayscale(100%);
+   
 }
+.produkt_pris{
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-align: right;
+    font-weight: bold;
+    
+}
+a{
+    text-decoration: none;
+   font-weight: normal;
+   text-align: center;
+ font-weight: bold;
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: rgb(24, 6, 138);
+   
+}
+a:hover{
+    color:rgb(100, 89, 169);
+}
+span{
+    text-decoration: line-through;
+    font-size: 12px;
+}
+/**********index*****/
+h1{
+   text-align: center;
+   margin-top: 5rem;
+   font-size: 28px;
+   margin-bottom: 2rem;
+   color: rgb(6, 126, 116);
+   
+}
+.kategory{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 0 auto;
+    max-width: 800px;
+    margin-bottom: 2rem;
+}
+
+.kategory_item{
+    background-color: rgb(162, 168, 190);
+    padding: 10%;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+.kategory_item:hover{
+    background-color:  rgb(174, 181, 208);
+    
+}
+
+
+
+/********produkt******/
+h2{
+    font-size: 18px;
+    padding: 10px;
+    text-align: center;
+  
+}
+.produkt_container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+    width: 90%;
+    max-width: 1000px;
+    align-items: start;
+    padding: 40px 0;
+    margin: 0 auto;
+}
+.produkt_img img{
+    width: 100%;
+    border-radius: 5px;
+}
+.produkt_info{
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-row:  span 2;
+}
+.produkt_info h2{
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+.produkt_info p{
+    font-size: 16px;
+    line-height: 1.6;
+}
+.brand{
+    padding: 5px;
+    font-size: 28px;
+    font-weight: bold;
+}
+.buy_card{
+    background-color: rgb(162, 168, 190);
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: left;
+   
+    grid-row: span 2;
+    max-width: 250px;
+    
+}
+.category{
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+label{
+    display: block;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+select{
+    width: 50%;
+    height: 20%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: none;
+
+}
+.add_to_basket{
+
+  
+    padding: 10px;
+    background-color: white;
+    color: black;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.add_to_basket:hover{
+    background: #777;
+}
+
+
 @media(min-width: 600px){
     .container{
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
         grid-template-rows: auto auto;
         gap: 20px;
+
+        max-width: 1000px;
+        margin: 0 auto;
+    }}
+
+    @media (max-width: 768px) {
+        .card {
+            max-width: 100%; 
+            padding: 12px;
+            font-size: 18px;
+        }
+    
+        .buy_card h2 {
+            font-size: 16px;
+        }
+    
+        .add_to_basket {
+            padding: 6px;
+            font-size: 13px;
+        }
     }
-}
+    
+   
+    @media (max-width: 480px) {
+        .card {
+            max-width: 100%;
+            font-size: 16px;
+            padding: 10px;
+        }
+    
+        .buy_card h2 {
+            font-size: 18px;
+        }
+    
+        .category {
+            font-size: 11px;
+        }
+    
+        select {
+            padding: 6px;
+            font-size: 12px;
+        }
+    
+        .add_to_basket {
+            padding: 5px;
+            font-size: 12px;
+        }
+    }
+    @media (max-width: 600px) {
+        .produkt_container {
+            grid-template-columns: 1fr; 
+            gap: 20px;
+        }
+    
+        .buy_card {
+            max-width: 100%;
+            padding: 15px;
+        }
+    
+        h2 {
+            font-size: 16px;
+        }
+    
+        .produkt_info h2 {
+            font-size: 20px;
+        }
+    
+        .brand {
+            font-size: 22px;
+        }
+    
+        .category,
+        label,
+        select,
+        .add_to_basket {
+            font-size: 16px;
+        }
+    }
+    @media (max-width: 900px) {
+        header {
+            flex-direction: column; 
+            text-align: center;
+            gap: 10px;
+        }
+    
+        header h1 {
+            font-size: 30px;
+        }
+    }
+    
+   
+    @media (max-width: 600px) {
+        header {
+            width: 100%; 
+            padding: 15px 10px;
+        }
+    
+        header h1 {
+            font-size: 25px;
+        }
+    }
+  
