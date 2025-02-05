@@ -67,6 +67,7 @@ img{
     
 }
 .discount{
+    visibility: hidden;
     position: absolute;
     text-align: center;
     font-weight: bold;
@@ -77,16 +78,46 @@ img{
     background-color: rgb(170, 23, 47);
     color: aliceblue;
 }
-.soldout{
-    position: absolute;
-    top: 40%;
-    left: 28%;
-    width: 50%;
-    padding: 12px;
-    background-color:rgb(24, 6, 138);
-    color: aliceblue;
-    text-align: center;
+.isOnsale{
+    visibility: visible;
 }
+.soldout-label {
+    background-color: red;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10px;
+    display: inline-block; /* Prevent full-width block issue */
+    width: auto; /* Ensure it only takes the necessary space */
+}
+.smallProduct {
+    width: 250px; /* Adjust based on your layout */
+    max-width: 100%;
+    display: inline-block; /* Prevents full-width stretching */
+    vertical-align: top; /* Keeps items aligned */
+}
+.smallProduct img {
+    width: 100%;
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* Prevent stretching */
+}
+.soldout {
+    opacity: 0.5; /* Make sold-out items look faded */
+    pointer-events: none; /* Prevent clicking */
+    position: relative; /* Ensure it doesn't mess with layout */
+}
+
+.soldout .soldout-label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 14px; /* Adjust size if too big */
+    padding: 5px 10px;
+    background: red;
+    color: white;
+}
+
 .soldout_img {
     filter: grayscale(100%);
    
