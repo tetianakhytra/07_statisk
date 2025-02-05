@@ -6,12 +6,12 @@ const myCategory = urlParams.get("category");
 const productList = document.querySelector(".container");
 const categoryTitle = document.querySelector(".category-title");
 
-// Set the category title if available
+
 if (myCategory) {
-    categoryTitle.textContent = `Category: ${myCategory}`;
+    categoryTitle.textContent = `Categories / ${myCategory}`;
 }
 
-// Fetch products from API
+
 fetch(`https://kea-alt-del.dk/t7/api/products?category=${myCategory}`)
     .then(response => response.json())
     .then(data => {
@@ -20,7 +20,7 @@ fetch(`https://kea-alt-del.dk/t7/api/products?category=${myCategory}`)
     })
     .catch(error => console.error("Error fetching data:", error));
 
-// Function to generate HTML for each product and display it
+
 function showProductList(products) {
     if (products.length === 0) {
         productList.innerHTML = "<p>No products found for this category.</p>";
@@ -30,21 +30,23 @@ function showProductList(products) {
    
     const markup = products.map(product => `
         <article class="smallProduct ${product.discount ? "onSale" : ""} ${product.soldout ? "soldout" : ""}">
+        
             <img src="https://kea-alt-del.dk/t7/images/webp/640/${product.id}.webp" 
                  alt="${product.productdisplayname}">
             <h3>${product.productdisplayname}</h3>
             <p class="subtle">${product.articletype} | ${product.brandname}</p>
-            <p class="price">DKK <span>${product.price}</span></p>
+            <p class="price">${product.price} kr</p>
             
             ${product.discount ? `
                 <div class="discounted">
-                    <p>NOW DKK <span>${Math.floor(product.price - (product.price * product.discount) / 100)}</span></p>
-                    <p><span>${product.discount}% OFF</span></p>
-                </div>` 
+                  <p class="discount">${product.discount}% OFF</p>
+                </div>
+                    <p class="now">NOW: ${Math.floor(product.price - (product.price * product.discount) / 100)} kr</p>
+                  ` 
             : ""}
             
             ${product.soldout ? `<div class="soldout-label">Sold Out</div>` 
-            : `<a href="produkt.html?produktId=${product.id}" class="buy-button">KØB</a>`}
+            : `<a class="buy" href="produkt.html?produktId=${product.id}">Read more</a>`}
         </article>
     `).join(""); 
     productList.innerHTML = markup;
