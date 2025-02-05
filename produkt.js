@@ -1,47 +1,58 @@
 let produktContainer = document.querySelector(".produkt_container");
-const productId = 1525;
 
-fetch(`https://kea-alt-del.dk/t7/api/products/${productId}`)
-  .then((response) => response.json())
-  .then((data) => {
-    console.log(data); // Debugging: Check API response
+const urlParams = new URLSearchParams(window.location.search);
+const productId = urlParams.get("produktId");
 
-    // Corrected discount check
-    const discountHTML = data.discount > 0 
-      ? `<div class="discount">-${data.discount}%</div>` 
-      : "";
+if (productId) {
+  fetch(`https://kea-alt-del.dk/t7/api/products/${productId}`)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
 
-    produktContainer.innerHTML = `
-      <div class="produkt_img">
-        <img src="https://kea-alt-del.dk/t7/images/webp/640/${productId}.webp" alt="clothes">
-      </div>
-      
-      ${discountHTML} <!-- Corrected Discount Rendering -->
+      const discountHTML = data.discount > 0 
+        ? `<div class="discount">-${data.discount}%</div>` 
+        : "";
 
-      <div class="produkt_info">
-        <h2>Produkt information</h2>
-        <p><strong>Brand name:</strong> ${data.brandname}</p>
-        <p><strong>Model name:</strong> ${data.productdisplayname}</p>
-        <p><strong>Gender:</strong> ${data.gender}</p>
-        <p><strong>Season:</strong> ${data.season}</p>
-        <p><strong>Pris:</strong> ${data.price} kr</p>
-      </div>
+      // Calculate final price after discount
+      let finalPrice = data.price;
+      if (data.discount > 0) {
+        finalPrice = (data.price * (1 - data.discount / 100)).toFixed(2);
+      }
 
-      <h2 class="brand">Description</h2>
-      <p>Praktisk og stilfuld rygsæk fra Puma, perfekt til både skole, arbejde eller sport. 
-      Designet med rummelige lommer og et moderne look. Komfortable skulderstopper sikrer 
-      optimal bærekomfort hele dagen.</p>
+      produktContainer.innerHTML = `
+        <div class="produkt_img">
+          <img src="https://kea-alt-del.dk/t7/images/webp/640/${productId}.webp" alt="${data.productdisplayname}">
+        </div>
 
-      <div>
-        <label for="size">Choose a size</label>
-        <select id="size">
-          <option value="S">S</option>
-          <option value="M">M</option>
-          <option value="L">L</option>
-        </select>
-      
-        <button class="add_to_basket">Add to basket</button>
-      </div>
-    `;
-  })
-  .catch((error) => console.error("Error fetching product:", error));
+        <div class="produkt_info">
+          <h2>Produkt information</h2>
+        
+          <p><strong>Brand name:</strong> ${data.brandname}</p>
+          <p><strong>Model name:</strong> ${data.productdisplayname}</p>
+          <p><strong>Gender:</strong> ${data.gender}</p>
+          <p><strong>Season:</strong> ${data.season}</p>
+
+          ${
+            data.discount > 0 
+              ? `<p><strong>Original Price:</strong> <span style="text-decoration: line-through; color: red;">${data.price} kr</span></p>
+                 <p><strong>Discounted Price:</strong> <span class="now">${finalPrice} kr</span></p>`
+              : `<p><strong>Price:</strong> ${data.price} kr</p>`
+          }
+        </div>
+
+        <div>
+          <label for="size">Choose a size</label>
+          <select id="size">
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+          </select>
+
+          <button class="add_to_basket">Add to basket</button>
+        </div>
+      `;
+    })
+    .catch((error) => console.error("Error fetching product:", error));
+} else {
+  produktContainer.innerHTML = "<p>Product not found.</p>";
+}
