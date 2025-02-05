@@ -4,7 +4,7 @@ const productId = 1525;
 fetch(`https://kea-alt-del.dk/t7/api/products/${productId}`)
   .then((response) => response.json())
   .then((data) => {
-    console.log(data); // Debugging: Check API response
+    console.log(data); 
 
     // Corrected discount check
     const discountHTML = data.discount > 0 

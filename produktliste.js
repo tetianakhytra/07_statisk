@@ -2,7 +2,7 @@
 const urlParams = new URLSearchParams(window.location.search);
 const myCategory = urlParams.get("category");
 
-// Select the container where products will be displayed
+
 const productList = document.querySelector(".container");
 const categoryTitle = document.querySelector(".category-title");
 
@@ -15,7 +15,7 @@ if (myCategory) {
 fetch(`https://kea-alt-del.dk/t7/api/products?category=${myCategory}`)
     .then(response => response.json())
     .then(data => {
-        console.log("Fetched data:", data); // Debugging: Check API response
+        console.log("Fetched data:", data); 
         showProductList(data);
     })
     .catch(error => console.error("Error fetching data:", error));
@@ -27,7 +27,7 @@ function showProductList(products) {
         return;
     }
 
-    // Generate HTML for each product
+   
     const markup = products.map(product => `
         <article class="smallProduct ${product.discount ? "onSale" : ""} ${product.soldout ? "soldout" : ""}">
             <img src="https://kea-alt-del.dk/t7/images/webp/640/${product.id}.webp" 
@@ -46,7 +46,6 @@ function showProductList(products) {
             ${product.soldout ? `<div class="soldout-label">Sold Out</div>` 
             : `<a href="produkt.html?produktId=${product.id}" class="buy-button">KØB</a>`}
         </article>
-    `).join(""); // Join array elements into a single string
-
+    `).join(""); 
     productList.innerHTML = markup;
 }

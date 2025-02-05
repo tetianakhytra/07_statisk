@@ -88,31 +88,31 @@ img{
     text-align: center;
     font-weight: bold;
     margin-top: 10px;
-    display: inline-block; /* Prevent full-width block issue */
-    width: auto; /* Ensure it only takes the necessary space */
+    display: inline-block; 
+    width: auto; 
 }
 .smallProduct {
-    width: 250px; /* Adjust based on your layout */
+    width: 250px; 
     max-width: 100%;
-    display: inline-block; /* Prevents full-width stretching */
-    vertical-align: top; /* Keeps items aligned */
+    display: inline-block; 
+    vertical-align: top; 
 }
 .smallProduct img {
     width: 100%;
-    height: auto; /* Maintain aspect ratio */
-    object-fit: cover; /* Prevent stretching */
+    height: auto; 
+    object-fit: cover; 
 }
 .soldout {
-    opacity: 0.5; /* Make sold-out items look faded */
-    pointer-events: none; /* Prevent clicking */
-    position: relative; /* Ensure it doesn't mess with layout */
+    opacity: 0.5; 
+    pointer-events: none; 
+    position: relative; 
 }
 
 .soldout .soldout-label {
     position: absolute;
     top: 10px;
     left: 10px;
-    font-size: 14px; /* Adjust size if too big */
+    font-size: 14px; 
     padding: 5px 10px;
     background: red;
     color: white;
